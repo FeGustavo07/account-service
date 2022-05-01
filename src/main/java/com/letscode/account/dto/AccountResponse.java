@@ -1,5 +1,6 @@
 package com.letscode.account.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.letscode.account.models.Account;
 import com.letscode.account.models.enums.AccountType;
 import lombok.Getter;
@@ -17,8 +18,11 @@ public class AccountResponse {
     private int number;
     private int agency;
     private BigDecimal balance;
+    @JsonProperty("registration-date")
     private LocalDateTime registrationDate;
+    @JsonProperty("update-date")
     private LocalDateTime updateDate;
+    @JsonProperty("account-type")
     private AccountType accountType;
 
     public AccountResponse(Account account) {

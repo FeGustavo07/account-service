@@ -22,9 +22,9 @@ public class AccountController {
         return accountService.create(accountRequest);
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public AccountResponse getById(@PathVariable Long id) {
+    public AccountResponse getById(@PathVariable("id") Long id) {
         return accountService.getById(id);
     }
 
@@ -34,14 +34,14 @@ public class AccountController {
         return accountService.getAll();
     }
 
-    @PostMapping
+    @PutMapping ("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public AccountResponse update(@PathVariable Long id, @RequestBody AccountRequest accountRequest) {
+    public AccountResponse update(@PathVariable("id") Long id, @RequestBody AccountRequest accountRequest) {
         return accountService.update(id, accountRequest);
     }
 
-    @DeleteMapping("/id")
-    public void delete(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Long id) {
         accountService.delete(id);
     }
 }

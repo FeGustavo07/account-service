@@ -1,5 +1,6 @@
 package com.letscode.account.services.impl;
 
+import com.letscode.account.clients.GetAccountNumber;
 import com.letscode.account.dto.AccountRequest;
 import com.letscode.account.dto.AccountResponse;
 import com.letscode.account.models.Account;
@@ -15,10 +16,12 @@ import java.util.List;
 public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository accountRepository;
+    private final GetAccountNumber getAccountNumber;
 
     @Override
     public AccountResponse create(AccountRequest accountRequest) {
         Account account = new Account(accountRequest);
+        account.setNumber(getAccountNumber.excute().getNumber());
         accountRepository.save(account);
         return new AccountResponse(account);
     }
@@ -43,8 +46,6 @@ public class AccountServiceImpl implements AccountService {
         account.setAccountType(accountRequest.getAccountType());
         account.setAgency(accountRequest.getAgency());
         account.setBalance(accountRequest.getBalance());
-        account.setUpdateDate(accountRequest.getUpdateDate());
-        account.setRegistrationDate(accountRequest.getRegistrationDate());
         account.setNumber(accountRequest.getNumber());
         return new AccountResponse(account);
     }
